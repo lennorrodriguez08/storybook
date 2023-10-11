@@ -1,44 +1,67 @@
 import { NavLink } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSortDown, faCircleUser } from "@fortawesome/free-solid-svg-icons"
+import { faSortDown, faCircleUser, faBars } from "@fortawesome/free-solid-svg-icons"
 
 const Navbar = () => {
+
+    const navList = document.querySelector('.nav-list')
+
+    const onClickMenu = e => {
+        
+        if (e.target.parentElement.classList.contains('menu-icon') || e.target.parentElement.parentElement.classList.contains('menu-icon')) {
+            navList.classList.toggle('max-sm:hidden')
+        }
+    }
+
     return (
         <nav>
             <div className="container p-4 mx-auto">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start relative">
                     <div>
-                        <h1 className="font-bold text-2xl">Storybook</h1>
+                        <h1 className="font-bold text-2xl text-sky-400">Storybook</h1>
                     </div>
-                    <div>
-                        <ul className="flex">
-                            <li className="p-3">
-                                <NavLink>
-                                    <div className="flex gap-x-2">
+                    <div className="menu-icon p-1.5 hidden max-sm:block text-xl leading-3 hover:cursor-pointer" onClick={onClickMenu}>
+                        <FontAwesomeIcon className="menu-icon" icon={faBars} />
+                    </div>
+                    <div className="nav-list max-sm:hidden max-sm:absolute max-sm:top-10 max-sm:w-full">
+                        <ul className="flex max-sm:flex-col">
+                            <li className="group">
+                                <NavLink className='p-1.5 min-w-[130px] max-sm:min-w-[initial] rounded-md block hover:bg-sky-100'>
+                                    <div className="flex gap-x-2 justify-center max-sm:justify-start">
                                         <span className="font-roboto-condensed">Stories</span>
                                         <FontAwesomeIcon icon={faSortDown} />
                                     </div>
                                 </NavLink>
-                                <ul className="md:block hidden">
+                                <ul className="hidden group-hover:block text-center max-sm:text-left">
                                     <li>
-                                        <NavLink to='/'>All Stories</NavLink>
+                                        <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                            All Stories
+                                        </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/'>Most Loved</NavLink>
+                                        <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                            Most Loved
+                                        </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/'>Most Commented</NavLink>
+                                        <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                            Most Commented
+                                        </NavLink>
                                     </li>
                                 </ul>
                             </li>
-                            <li className="p-3">
-                                <NavLink to='/'>Storytellers</NavLink>
+                            <li>
+                                <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                    Storytellers
+                                </NavLink>
                             </li>
-                            <li className="p-3">
-                                <NavLink to='/'>About Storybook</NavLink>
+                            <li>
+                                <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                    About Storybook
+                                </NavLink>
                             </li>
-                            <li className="p-3">
-                                <NavLink to='/'>
+                            <li>
+                                <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
                                     <div className="flex gap-x-2 items-center">
                                         <span className="font-roboto-condensed">Login</span>
                                         <FontAwesomeIcon icon={faCircleUser} />
