@@ -16,35 +16,35 @@ const Navbar = () => {
     return (
         <nav>
             <div className="container p-4 mx-auto">
-                <div className="flex justify-between items-start relative">
+                <div className="flex justify-between items-start">
                     <div>
                         <h1 className="font-bold text-2xl text-sky-400">Storybook</h1>
                     </div>
                     <div className="menu-icon p-1.5 hidden max-sm:block text-xl leading-3 hover:cursor-pointer" onClick={onClickMenu}>
                         <FontAwesomeIcon className="menu-icon" icon={faBars} />
                     </div>
-                    <div className="nav-list max-sm:hidden max-sm:absolute max-sm:top-10 max-sm:w-full">
-                        <ul className="flex max-sm:flex-col">
-                            <li className="group">
+                    <div className="nav-list bg-white max-sm:hidden max-sm:absolute max-sm:top-[55px] max-sm:right-0 max-sm:bottom-0 max-sm:w-full">
+                        <ul className="flex max-sm:flex-col max-sm:px-4">
+                            <li className="group relative">
                                 <NavLink className='p-1.5 min-w-[130px] max-sm:min-w-[initial] rounded-md block hover:bg-sky-100'>
                                     <div className="flex gap-x-2 justify-center max-sm:justify-start">
                                         <span className="font-roboto-condensed">Stories</span>
                                         <FontAwesomeIcon icon={faSortDown} />
                                     </div>
                                 </NavLink>
-                                <ul className="hidden group-hover:block text-center max-sm:text-left">
+                                <ul className="hidden absolute max-sm:relative group-hover:block text-center max-sm:text-left">
                                     <li>
-                                        <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                        <NavLink to='/' className='p-1.5 min-w-[130px] max-sm:min-w-[initial] rounded-md block hover:bg-sky-100'>
                                             All Stories
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                        <NavLink to='/' className='p-1.5 min-w-[130px] max-sm:min-w-[initial] rounded-md block hover:bg-sky-100'>
                                             Most Loved
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                        <NavLink to='/' className='p-1.5 min-w-[130px] max-sm:min-w-[initial] rounded-md block hover:bg-sky-100'>
                                             Most Commented
                                         </NavLink>
                                     </li>
@@ -61,7 +61,7 @@ const Navbar = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                <NavLink to='/login' className='p-1.5 rounded-md block hover:bg-sky-100'>
                                     <div className="flex gap-x-2 items-center">
                                         <span className="font-roboto-condensed">Login</span>
                                         <FontAwesomeIcon icon={faCircleUser} />
