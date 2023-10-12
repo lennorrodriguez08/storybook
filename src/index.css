@@ -8,10 +8,10 @@
 
 
 * {
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #333333;
 }
 
-.font-roboto-condensed, p, li, a {
-  font-family: 'Roboto Condensed', sans-serif;
+.font-roboto-slab {
+  font-family: 'Roboto Slab', sans-serif;
 }

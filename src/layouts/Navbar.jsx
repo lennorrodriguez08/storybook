@@ -4,8 +4,10 @@ import { faSortDown, faCircleUser, faBars } from "@fortawesome/free-solid-svg-ic
 
 const Navbar = () => {
 
+    // Navigation element reference
     const navList = document.querySelector('.nav-list')
 
+    // Onclick function to toggle on off the menu icon in mobile breakpoint
     const onClickMenu = e => {
         
         if (e.target.parentElement.classList.contains('menu-icon') || e.target.parentElement.parentElement.classList.contains('menu-icon')) {
@@ -18,7 +20,7 @@ const Navbar = () => {
             <div className="container p-4 mx-auto">
                 <div className="flex justify-between items-start">
                     <div>
-                        <h1 className="font-bold text-2xl text-sky-400">Storybook</h1>
+                        <h1 className="font-bold font-roboto-slab text-2xl text-sky-400">Storybook</h1>
                     </div>
                     <div className="menu-icon p-1.5 hidden max-sm:block text-xl leading-3 hover:cursor-pointer" onClick={onClickMenu}>
                         <FontAwesomeIcon className="menu-icon" icon={faBars} />
@@ -28,7 +30,7 @@ const Navbar = () => {
                             <li className="group relative">
                                 <NavLink className='p-1.5 min-w-[130px] max-sm:min-w-[initial] rounded-md block hover:bg-sky-100'>
                                     <div className="flex gap-x-2 justify-center max-sm:justify-start">
-                                        <span className="font-roboto-condensed">Stories</span>
+                                        <span>Stories</span>
                                         <FontAwesomeIcon icon={faSortDown} />
                                     </div>
                                 </NavLink>
@@ -61,9 +63,9 @@ const Navbar = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to='/login' className='p-1.5 rounded-md block hover:bg-sky-100'>
+                                <NavLink to='/sign-in' className='p-1.5 rounded-md block hover:bg-sky-100'>
                                     <div className="flex gap-x-2 items-center">
-                                        <span className="font-roboto-condensed">Login</span>
+                                        <span>Sign In</span>
                                         <FontAwesomeIcon icon={faCircleUser} />
                                     </div>
                                 </NavLink>
