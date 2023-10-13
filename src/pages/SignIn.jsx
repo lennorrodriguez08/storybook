@@ -1,8 +1,22 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import { app } from "../../firebase.config"
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
 import FormContainer from "../components/FormContainer"
 import Button from "../components/Button"
+import { toast } from "react-toastify"
 
 const SignIn = () => {
+
+    const navigate = useNavigate()
+
+    /*
+    const auth = getAuth();
+    signOut(auth).then(() => {
+    // Sign-out successful.
+    }).catch((error) => {
+    // An error happened.
+    });
+    */
 
     const signInForm = document.querySelector('#signin-form')
 
@@ -10,6 +24,30 @@ const SignIn = () => {
         e.preventDefault()
         
     })
+
+    const signInViaGoogle = async () => {
+
+        const provider = new GoogleAuthProvider()
+        const auth = getAuth(app)
+
+        try {
+
+            const data = await signInWithPopup(auth, provider)
+            const credential = GoogleAuthProvider.credentialFromResult(data)
+            const token = credential.accessToken
+            const user = data.user
+            console.log(user)
+            toast.success('Sign in successful')
+            
+            setTimeout(() => {
+                navigate('/stories')
+            }, 5000)
+
+        }   catch(error) {
+            toast.error('Sign in failed')
+            console.log('Google sign in failed ...', error)
+        }
+    }
 
     return (
         <div className="font-roboto-condensed">
@@ -27,7 +65,7 @@ const SignIn = () => {
                     </div>
                     <div>
                         <div className="py-3">
-                            <NavLink to='/' className='block text-sm hover:text-sky-400'>Login using Google account</NavLink>
+                            <NavLink className='block text-sm hover:text-sky-400' onClick={signInViaGoogle}>Login using Google account</NavLink>
                             <NavLink to='/' className='block text-sm hover:text-sky-400'>Create an account</NavLink>
                             <NavLink to='/' className='block text-sm hover:text-sky-400'>Forgot password</NavLink>
                         </div>
