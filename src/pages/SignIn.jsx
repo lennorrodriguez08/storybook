@@ -24,6 +24,12 @@ const SignIn = () => {
         }))
     }
 
+    const signInWithEmailandPass = async () => {
+
+        return await signInWithEmailAndPassword(auth, email, password)
+
+    }
+
     const onSubmitSignIn = e => {
         e.preventDefault()
 
@@ -31,24 +37,29 @@ const SignIn = () => {
 
         if ((email !== '' && email.match(emailRegEx)) && (password.length >= 6) && password !== '' ) {
             
-            try {
-                signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user
-                    console.log(user)
+            signInWithEmailandPass()
+            .then((userCredential) => {
+                
+                const user = userCredential.user
 
-                    if (!user.emailVerified) {
-                        toast.error('Please finish the verification process. Kindly verify your email address first')
-                    }   else {
+                if (!user.emailVerified) {
+                    toast.error('Please finish the account verification process. Kindly verify your email address.')
+                }   else {
+
+                    toast.success('Sign in successful.')
+            
+                    setTimeout(() => {
                         navigate('/stories')
-                    }
+                    }, 5000)
+                }
 
-                })
-            }   catch(error) {  
+            }).catch((error) => {
                 console.log(error)
-            }
+                toast.error('Invalid email/password.')
+            })
+
         }   else {
-            toast.error('Invalid email/password')
+            toast.error('Invalid email/password.')
         }
     }
 
