@@ -8,6 +8,8 @@ import { useState } from "react"
 
 const SignIn = () => {
 
+    console.log('Test ...')
+
     const navigate = useNavigate()
     const auth = getAuth(app)
     const [signInFormData, setSignInFormData] = useState({
@@ -47,7 +49,7 @@ const SignIn = () => {
                     if (!document.querySelector('.Toastify__toast-container')) {
 
                         const actionCodeSettings = {
-                            url: 'https://storybook-1c33c.firebaseapp.com/__/auth/action',
+                            url: 'https://storybook-1c33c.firebaseapp.com',
                             handleCodeInApp: true
                         }
 
