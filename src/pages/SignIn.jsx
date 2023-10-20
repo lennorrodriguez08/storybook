@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import { app } from "../../firebase.config"
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendSignInLinkToEmail } from "firebase/auth"
 import FormContainer from "../components/FormContainer"
 import Button from "../components/Button"
 import { toast } from "react-toastify"
@@ -43,7 +43,25 @@ const SignIn = () => {
                 const user = userCredential.user
 
                 if (!user.emailVerified) {
-                    toast.error('Please finish the account verification process. Kindly verify your email address.')
+
+                    if (!document.querySelector('.Toastify__toast-container')) {
+
+                        const actionCodeSettings = {
+                            url: 'https://storybook-1c33c.firebaseapp.com/__/auth/action',
+                            handleCodeInApp: true
+                        }
+
+                        sendSignInLinkToEmail(auth, email, actionCodeSettings)
+                        .then(() => {
+                            window.localStorage('emailForSignIn', email)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+
+                        toast.error('Please finish the account verification process. Kindly check the email we just sent to you to verify.', {autoClose: false})
+                    }
+
                 }   else {
 
                     toast.success('Sign in successful.')
